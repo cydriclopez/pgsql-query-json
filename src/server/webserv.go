@@ -27,7 +27,7 @@ func main() {
 	// Init treedata then serve its controllers & pass db connection
 	tdata := treedata.TData(&pgx)
 	http.HandleFunc("/api/postjsonstring", tdata.PostJsonData)
-	http.HandleFunc("/api/getsidemenudata/", tdata.GetTreeJsonData)
+	http.HandleFunc("/api/gettreejsondata/", tdata.GetTreeJsonData)
 
 	// Catch the Ctrl-C and SIGTERM from kill command
 	ch := make(chan os.Signal, 1)

@@ -53,7 +53,7 @@ export class NodeService {
     }
 
     loadTreeNodes() {
-        return this.http.get<any>('/api/getsidemenudata/')
+        return this.http.get<any>('/api/gettreejsondata/')
           .toPromise()
           .then(res => <TreeNode2[]>res.data);
     }
