@@ -1,0 +1,12 @@
+<p-toolbar styleClass="p-mb-4">
+    <ng-template pTemplate="left">
+        <button pButton pRipple label="Expand" icon="pi pi-window-maximize" class="p-button-info p-mr-2" (click)="expandAll()"></button>
+        <button pButton pRipple label="Collapse" icon="pi pi-window-minimize" class="p-button-info p-mr-2" (click)="collapseAll()"></button>
+        <button pButton pRipple label="Read" icon="pi pi-arrow-circle-up" class="p-button-info p-mr-2" (click)="readJsonData()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-save" class="p-button-info p-mr-2" (click)="postJsonData()"></button>
+        <a pButton label="List demo" icon="pi pi-list" class="p-button-info p-ml-2" style="text-decoration: none" [routerLink]="['/home']"></a>
+    </ng-template>
+</p-toolbar>
+
+<p-tree [value]="treeNodes" (onNodeExpand)="saveToexpand($event)" (onNodeCollapse)="saveToexpand($event)"></p-tree>
+<p-toast position="top-right"></p-toast>
