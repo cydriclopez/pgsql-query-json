@@ -96,7 +96,7 @@ func (t *tData) saveJsonData() error {
 	return nil
 }
 
-// Controller for url "/api/getsidemenudata"
+// Controller for url "/api/gettreejsondata"
 func (t *tData) GetTreeJsonData(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
 
