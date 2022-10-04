@@ -84,7 +84,7 @@ func (t *tData) PostJsonData(w http.ResponseWriter, r *http.Request) {
 // Save json data to db
 func (t *tData) saveJsonData() error {
 	// Print the data from the client
-	log.Println("jsonData:", t.Jdata.Data)
+	log.Println("Angular client json data:\n:", t.Jdata.Data)
 
 	// SQL statement to call the stored-function
 	sql := "select tree_insert($1)"
@@ -119,10 +119,13 @@ func (t *tData) GetTreeJsonData(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
+		// Success so return requested data
+		log.Println("Postgresql server json data:\n", string(data))
 		w.Write(data)
 		return
 	}
 
+	log.Print("http.NotFound")
 	http.NotFound(w, r)
 }
 
