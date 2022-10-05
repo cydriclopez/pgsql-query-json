@@ -5,15 +5,15 @@
 > ***This tutorial requires some knowledge in Linux, Docker, Git, Angular, PostgreSQL, and Go Programming Language.***
 
 ### Table of Contents
-1. [Introduction]()
-2. [Goal]()
-3. [Prerequisites]()
-4. [Clone this repo]()
-5. [Angular code]()
-6. [Go server code]()
-7. [PostgreSQL code]()
-8. [Running the ***webserv*** app]()
-9. [Conclusion]()
+1. [Introduction](https://github.com/cydriclopez/pgsql-query-json#1-introduction)
+2. [Goal](https://github.com/cydriclopez/pgsql-query-json#2-goal)
+3. [Prerequisites](https://github.com/cydriclopez/pgsql-query-json)
+4. [Clone this repo](https://github.com/cydriclopez/pgsql-query-json)
+5. [Angular code](https://github.com/cydriclopez/pgsql-query-json)
+6. [Go server code](https://github.com/cydriclopez/pgsql-query-json)
+7. [PostgreSQL code](https://github.com/cydriclopez/pgsql-query-json)
+8. [Running the ***webserv*** app](https://github.com/cydriclopez/pgsql-query-json)
+9. [Conclusion](https://github.com/cydriclopez/pgsql-query-json)
 
 ### 1. Introduction
 
@@ -104,7 +104,12 @@ And then display them in our web app:
 
 
 ### 3. Prerequisites
-
+### 4. Clone this repo
+### 5. Angular code
+### 6. Go server code
+### 7. PostgreSQL code
+### 8. Running the ***webserv*** app
+### 9. Conclusion
 
 ---
 
