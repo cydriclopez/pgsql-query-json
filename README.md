@@ -7,13 +7,13 @@
 ### Table of Contents
 1. [Introduction](https://github.com/cydriclopez/pgsql-query-json#1-introduction)
 2. [Goal](https://github.com/cydriclopez/pgsql-query-json#2-goal)
-3. [Prerequisites](https://github.com/cydriclopez/pgsql-query-json)
-4. [Clone this repo](https://github.com/cydriclopez/pgsql-query-json)
-5. [Angular code](https://github.com/cydriclopez/pgsql-query-json)
-6. [Go server code](https://github.com/cydriclopez/pgsql-query-json)
-7. [PostgreSQL code](https://github.com/cydriclopez/pgsql-query-json)
-8. [Running the ***webserv*** app](https://github.com/cydriclopez/pgsql-query-json)
-9. [Conclusion](https://github.com/cydriclopez/pgsql-query-json)
+3. [Prerequisites](https://github.com/cydriclopez/pgsql-query-json#3-prerequisites)
+4. [Clone this repo](https://github.com/cydriclopez/pgsql-query-json#4-clone-this-repo)
+5. [Angular code](https://github.com/cydriclopez/pgsql-query-json#5-angular-code)
+6. [Go server code](https://github.com/cydriclopez/pgsql-query-json#6-go-server-code)
+7. [PostgreSQL code](https://github.com/cydriclopez/pgsql-query-json#7-postgresql-code)
+8. [Running the ***webserv*** app](https://github.com/cydriclopez/pgsql-query-json#8-running-the-webserv-app)
+9. [Conclusion](https://github.com/cydriclopez/pgsql-query-json#9-conclusion)
 
 ### 1. Introduction
 
