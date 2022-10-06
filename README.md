@@ -229,10 +229,13 @@ Package                      Version
 user1@penguin:~/Projects/github/pgsql-query-json/src/docker$
 :
 ```
+Gone are the days of mind-numbing complexity of manually installing software. Using Docker images and containers beats having to manually install software for development and deployment. Docker just solves a lot of IT pain in development and deployment.
 
-
+<ins>***IT departments not yet using Docker are still in the dark ages!***</ins>
 
 ### 5. Angular code
+
+
 ### 6. Go server code
 ### 7. PostgreSQL code
 ### 8. Running the Go ***webserv*** app
