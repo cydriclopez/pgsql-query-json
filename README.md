@@ -217,7 +217,7 @@ postgres=# select version();
  PostgreSQL 14.5 (Debian 14.5-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
 (1 row)
 
-# Exit our of Postgresql
+# Exit out of Postgresql
 postgres=# \q
 
 # We are back into our bash console. Try run Angular.
@@ -255,6 +255,7 @@ Package                      Version
 user1@penguin:~/Projects/github/pgsql-query-json/src/docker$
 :
 ```
+
 
 
 ### 5. Angular code
