@@ -169,37 +169,11 @@ drwxr-xr-x 1 user1 user1   46 Oct  2 21:25 ..
 # to create the Angular & Postgresql containers.
 user1@penguin:~/Projects/github/pgsql-query-json/src/docker$
 :source docker_init.sh
-
-Untagged: angular:latest
-Deleted: sha256:ef22ab3948cb4aa6af623164a69b86fb29be530fc078fde18f9fa03531f61043
-Deleted: sha256:f1d18fe582580a8429925c8d8937deec39b899df84cdf005a3360aedffed868d
-Untagged: postgres:latest
-Deleted: sha256:59bfd46e52be6a14cd89d2b3f13c97f32c118994373985107b27b18f5c410792
-Sending build context to Docker daemon   7.68kB
-Step 1/2 : FROM node:14.18-alpine
- ---> 194cd0d85d8a
-Step 2/2 : RUN npm install -g @angular/cli
- ---> Running in 401bf53faf04
-/usr/local/bin/ng -> /usr/local/lib/node_modules/@angular/cli/bin/ng.js
-+ @angular/cli@14.2.5
-added 214 packages from 165 contributors in 17.676s
-Removing intermediate container 401bf53faf04
- ---> 373203306acf
-Successfully built 373203306acf
-Successfully tagged angular:latest
-Sending build context to Docker daemon   7.68kB
-Step 1/2 : FROM postgres:14
- ---> 75993dd36176
-Step 2/2 : RUN mkdir -p /home/psql
- ---> Running in 082551512e9f
-Removing intermediate container 082551512e9f
- ---> 9a81a1ce3c70
-Successfully built 9a81a1ce3c70
-Successfully tagged postgres:latest
-postgres14
-postgres14
-951ac96e739c2017f708375f628242c2f12e305ba2c153e5999dd33cadc81972
-
+ .
+ :
+[truncated Docker messages]
+ .
+ :
 # At this point our Angular & Postgresql images & containers are ready
 user1@penguin:~/Projects/github/pgsql-query-json/src/docker$
 :pgstart
