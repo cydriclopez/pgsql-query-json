@@ -149,6 +149,8 @@ Our Docker code consists of 5 files located in folder [src/docker](https://githu
 | 4 | postgres.dockerfile | [src/docker/postgres.dockerfile](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/docker/postgres.dockerfile) | create Postgresql image |
 | 5 | README.md | [src/docker/README.md](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/docker/README.md) | readme file |
 
+As shown below we will run ***source docker_init.sh*** to create the Angular & Postgresql images and containers (the running instance of images). This we will only run once. After our images and containers are created then we can simply run ***source docker_alias.sh*** to create our aliases. These aliases are shortcuts to docker commands.
+
 Follow carefully the command line instructions (cli) below to create the needed docker images and containers for this project. Comment lines start with character "#".
 
 ```bash
