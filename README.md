@@ -108,7 +108,7 @@ I assume you know about [GNU/Linux](https://www.debian.org/releases/jessie/amd64
 
 In my ***~/.bashrc*** file I have a line ***export PS1=$PS1'\n:'*** which results in my command line prompt as shown below. This way no matter how long is my path, my prompt is always on the second column right after the colon ":" character. I have just added extra line-feed and comments (starts with #) between prompts for clarity.
 
-To lessen confusion, as far as folders are concerned, I have adopted ***~/Projects/github/*** as the root project folder for this tutorial. I trust that you know what you are doing if you divert from norm.
+To lessen confusion, as far as folders are concerned, I have adopted ***~/Projects/github/*** as the root project folder for this tutorial. I trust that you know what you are doing if you divert from this norm.
 
 Follow carefully the command line instructions (cli) below to clone this project.
 
@@ -149,7 +149,7 @@ Our Docker code consists of 5 files located in folder [src/docker](https://githu
 | 4 | postgres.dockerfile | [src/docker/postgres.dockerfile](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/docker/postgres.dockerfile) | create Postgresql image |
 | 5 | README.md | [src/docker/README.md](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/docker/README.md) | readme file |
 
-Follow carefully the command line instructions (cli) below to create the needed docker images and containers for this project.
+Follow carefully the command line instructions (cli) below to create the needed docker images and containers for this project. Comment lines start with character "#".
 
 ```bash
 # ll is my alias for "ls --color -lah --group-directories-first" command
@@ -164,8 +164,98 @@ drwxr-xr-x 1 user1 user1   46 Oct  2 21:25 ..
 -rw-r--r-- 1 user1 user1  239 Oct  5 13:38 postgres.dockerfile
 -rw-r--r-- 1 user1 user1   22 Oct  2 22:39 README.md
 
+# Run "source docker_init.sh" to create the Angular &
+# Postgresql images. This will also run "source docker_alias.sh"
+# to create the Angular & Postgresql containers.
+user1@penguin:~/Projects/github/pgsql-query-json/src/docker$
+:source docker_init.sh
 
+Untagged: angular:latest
+Deleted: sha256:ef22ab3948cb4aa6af623164a69b86fb29be530fc078fde18f9fa03531f61043
+Deleted: sha256:f1d18fe582580a8429925c8d8937deec39b899df84cdf005a3360aedffed868d
+Untagged: postgres:latest
+Deleted: sha256:59bfd46e52be6a14cd89d2b3f13c97f32c118994373985107b27b18f5c410792
+Sending build context to Docker daemon   7.68kB
+Step 1/2 : FROM node:14.18-alpine
+ ---> 194cd0d85d8a
+Step 2/2 : RUN npm install -g @angular/cli
+ ---> Running in 401bf53faf04
+/usr/local/bin/ng -> /usr/local/lib/node_modules/@angular/cli/bin/ng.js
++ @angular/cli@14.2.5
+added 214 packages from 165 contributors in 17.676s
+Removing intermediate container 401bf53faf04
+ ---> 373203306acf
+Successfully built 373203306acf
+Successfully tagged angular:latest
+Sending build context to Docker daemon   7.68kB
+Step 1/2 : FROM postgres:14
+ ---> 75993dd36176
+Step 2/2 : RUN mkdir -p /home/psql
+ ---> Running in 082551512e9f
+Removing intermediate container 082551512e9f
+ ---> 9a81a1ce3c70
+Successfully built 9a81a1ce3c70
+Successfully tagged postgres:latest
+postgres14
+postgres14
+951ac96e739c2017f708375f628242c2f12e305ba2c153e5999dd33cadc81972
+
+# At this point our Angular & Postgresql images & containers are ready
+user1@penguin:~/Projects/github/pgsql-query-json/src/docker$
+:pgstart
+postgres14
+
+user1@penguin:~/Projects/github/pgsql-query-json/src/docker$
+:psql
+psql (14.5 (Debian 14.5-1.pgdg110+1))
+Type "help" for help.
+
+# Try query the Postgresql version. It works!
+postgres=# select version();
+                                                           version
+-----------------------------------------------------------------------------------------------------------------------------
+ PostgreSQL 14.5 (Debian 14.5-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+(1 row)
+
+# Exit our of Postgresql
+postgres=# \q
+
+# We are back into our bash console. Try run Angular.
+user1@penguin:~/Projects/github/pgsql-query-json/src/docker$
+:angular
+/home/node/ng # ng -v
+
+     _                      _                 ____ _     ___
+    / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
+   / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
+  / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
+ /_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
+                |___/
+
+
+Angular CLI: 14.2.5
+Node: 14.18.3
+Package Manager: npm 6.14.15
+OS: linux x64
+
+Angular:
+...
+
+Package                      Version
+------------------------------------------------------
+@angular-devkit/architect    0.1402.5 (cli-only)
+@angular-devkit/core         14.2.5 (cli-only)
+@angular-devkit/schematics   14.2.5 (cli-only)
+@schematics/angular          14.2.5 (cli-only)
+
+# Yay! Angular works! Let's exit for now.
+/home/node/ng # exit
+
+# We are back again in our local bash session
+user1@penguin:~/Projects/github/pgsql-query-json/src/docker$
+:
 ```
+
 
 ### 5. Angular code
 ### 6. Go server code
