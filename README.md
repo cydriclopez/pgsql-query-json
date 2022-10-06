@@ -17,7 +17,7 @@
 
 ### 1. Introduction
 
-This tutorial concludes this series on dealing with JSON data from a tree GUI component. We continue where the [previous tutorial](https://github.com/cydriclopez/pgsql-parse-json) ended.
+We continue where the [previous tutorial](https://github.com/cydriclopez/pgsql-parse-json) ended. This tutorial concludes this series on dealing with JSON data from a tree GUI component.
 
 In this tutorial we write the Angular client code to read JSON data from our Go GET controller code which we will write as well. Our Go controller code will call Postgresql. We will also write a stored-function to generate JSON data.
 
@@ -106,14 +106,14 @@ And then feed this JSON data into our web app for display in our tree component:
 
 I assume you know about [GNU/Linux](https://www.debian.org/releases/jessie/amd64/ch01s02.html.en). I also assume you have Docker and Git installed. These are basic essentials for software developers these days and life without them is just impossible.😊
 
-In my ***~/.bashrc*** file I have a line ***export PS1=$PS1'\n:'*** which results in my command line prompt as shown below. I have just added extra line-feed and comments (starts with #) between prompts for clarity.
+In my ***~/.bashrc*** file I have a line ***export PS1=$PS1'\n:'*** which results in my command line prompt as shown below. This way no matter how long is my path, my prompt is always on the second column right after the colon ":" character. I have just added extra line-feed and comments (starts with #) between prompts for clarity.
 
-To lessen confusion as far as folders are concerned I have adopted ***~/Projects/github/*** as the root project folder for this tutorial.
+To lessen confusion, as far as folders are concerned, I have adopted ***~/Projects/github/*** as the root project folder for this tutorial.
 
 Follow carefully the command line instructions (cli) below to clone this project.
 
 ```bash
-# From user1 home folder make a directory ~/Projects/github.
+# From your home folder make a directory ~/Projects/github.
 # The -p parameter creates the whole path if it does not exist.
 user1@penguin:~$
 :mkdir -p ~/Projects/github
