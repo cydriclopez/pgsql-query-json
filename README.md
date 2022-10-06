@@ -106,7 +106,7 @@ And then feed this JSON data into our web app for display in our tree component:
 
 I assume you know about [GNU/Linux](https://www.debian.org/releases/jessie/amd64/ch01s02.html.en). I also assume you have [Docker](https://docs.docker.com/engine/install/) and [Git](https://git-scm.com/download/linux) installed. These are basic essentials for software developers these days and life without them is just impossible.😊
 
-In my ***~/.bashrc*** file I have a line ***export PS1=$PS1'\n:'*** which results in my command line prompt as shown below (i.e. ***user1@penguin:~\$***). This way no matter how long is my path, my prompt is always on the second column right after the colon ":" character. I have just added extra line-feed and comments (starts with #) between prompts for clarity.
+In my ***~/.bashrc*** file I have a line ***export PS1=$PS1'\n:'*** which results in my command line prompt as shown below (i.e. ***user1@penguin:~\$***). This way no matter how long is my path, my prompt is always on the next line down then second character from the left and right after the colon ":" character. I have just added extra line-feed and comments (starts with #) between prompts for clarity.
 
 To lessen confusion, as far as folders are concerned, I have adopted ***~/Projects/github/*** as the root project folder for this tutorial. I trust that you know what you are doing if you divert from this norm.
 
