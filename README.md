@@ -108,7 +108,7 @@ I assume you know about [GNU/Linux](https://www.debian.org/releases/jessie/amd64
 
 In my ***~/.bashrc*** file I have a line ***export PS1=$PS1'\n:'*** which results in my command line prompt as shown below. This way no matter how long is my path, my prompt is always on the second column right after the colon ":" character. I have just added extra line-feed and comments (starts with #) between prompts for clarity.
 
-To lessen confusion, as far as folders are concerned, I have adopted ***~/Projects/github/*** as the root project folder for this tutorial.
+To lessen confusion, as far as folders are concerned, I have adopted ***~/Projects/github/*** as the root project folder for this tutorial. I trust that you know what you are doing if you divert from norm.
 
 Follow carefully the command line instructions (cli) below to clone this project.
 
