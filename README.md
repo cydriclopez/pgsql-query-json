@@ -229,7 +229,7 @@ Package                      Version
 user1@penguin:~/Projects/github/pgsql-query-json/src/docker$
 :
 ```
-Gone are the days of mind-numbing complexity of manually installing software. Using Docker images and containers beats having to manually install software for development and deployment. Docker just solves a lot of IT pain in development and deployment. ***IT departments not yet using Docker are still in the dark ages!***
+Gone are the days of mind-numbing complexity of manually installing software. Using Docker images and containers beats having to manually install software for development and deployment. Docker just solves a lot of IT pain in development and deployment. ***IT departments not yet using Docker are still in the dark ages!*** There are now alternatives in [Podman and Buildah](https://developers.redhat.com/blog/2019/02/21/podman-and-buildah-for-docker-users), or even [LXD](https://linuxcontainers.org/lxd/) that are quite effective and highly useful.
 
 ### 5. Angular code
 
