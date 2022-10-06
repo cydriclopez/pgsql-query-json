@@ -229,9 +229,7 @@ Package                      Version
 user1@penguin:~/Projects/github/pgsql-query-json/src/docker$
 :
 ```
-Gone are the days of mind-numbing complexity of manually installing software. Using Docker images and containers beats having to manually install software for development and deployment. Docker just solves a lot of IT pain in development and deployment.
-
-<ins>***IT departments not yet using Docker are still in the dark ages!***</ins>
+Gone are the days of mind-numbing complexity of manually installing software. Using Docker images and containers beats having to manually install software for development and deployment. Docker just solves a lot of IT pain in development and deployment. ***IT departments not yet using Docker are still in the dark ages!***
 
 ### 5. Angular code
 
