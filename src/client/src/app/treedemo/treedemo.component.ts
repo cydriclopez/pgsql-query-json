@@ -15,6 +15,9 @@ export class TreedemoComponent implements OnInit {
         private messageService: MessageService
     ) { }
 
+    // Read-only access to tree data. Components are
+    // for UI display. Application state, data, and
+    // logic must be off-loaded to a service.
     public get treeNodes() {
         return this.nodeService.treeNodes;
     }
