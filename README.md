@@ -245,7 +245,9 @@ There are now alternatives in [Podman and Buildah](https://developers.redhat.com
 
 ### 5. Client code
 
-Our client code is written in ***Angular/TypeScript*** but it can be translated to any other web framework. People make a big deal of Angular's learning curve. Once you get over Angular's being a highly opinionated framework, then you will realize it is quite elegantly designed actually. It has built-in formalizations of stuff like Components, Directives, Dependency Injection, Singleton Service, PWA web service worker, RxJS Observables, Jasmine-Karma testing, and etc. These are all built-in baked into Angular. In other frameworks these may be provided by separate and disparate 3rd-party libraries.
+Our client code is written in ***Angular/TypeScript*** but it can be translated to any other web framework. People make a big deal of Angular's learning curve. Once you get over Angular's being a highly opinionated framework, then you will realize it is quite elegantly designed actually. Angular projects tend to be modular.
+
+Angular has built-in formalizations of stuff like Components, Directives, Dependency Injection, Singleton Service, PWA web service worker, RxJS Observables, Jasmine-Karma testing, and etc. These are all built-in baked into Angular. In other frameworks these may be provided by separate and disparate 3rd-party libraries. The latest Angular compiler has greatly improved in generating smaller code.
 
 This demo code started out as a clone of the [PrimeNG Angular-CLI](https://github.com/primefaces/primeng-quickstart-cli) project. I have largely maintained this demo code project. I tweaked it to make room for the tree-demo page by adding the ***Tree Demo*** button and implemented routing. It is in the ***Tree Demo*** page where we implement the client code in this tutorial.
 
