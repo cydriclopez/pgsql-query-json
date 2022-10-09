@@ -245,11 +245,15 @@ There are now alternatives in [Podman and Buildah](https://developers.redhat.com
 
 ### 5. Client code
 
-Our client code is written in ***Angular/TypeScript*** but it can be translated to any other web framework. People make a big deal of Angular's learning curve. Once you get over Angular's being a highly opinionated framework, then you will realize it is quite elegantly designed actually. Angular projects tend to be modular.
+#### Client code origin
+
+This demo code started out as a clone of the [PrimeNG Angular-CLI](https://github.com/primefaces/primeng-quickstart-cli) project. I have largely maintained this demo code project. I tweaked it to make room for the tree-demo page by adding the ***Tree Demo*** button and implemented routing. It is in the ***Tree Demo*** page where we implement the client code in this tutorial.
+
+Our client code is written in ***Angular/TypeScript*** but it can be translated to any other web framework. People make a big deal of Angular's learning curve. Once you get over Angular's being a highly opinionated framework, then you will realize it is quite elegantly designed actually. Angular projects tend to be modular and thus manageable.
 
 Angular has built-in formalizations of stuff like Components, Directives, Dependency Injection, Singleton Service, PWA web service worker, RxJS Observables, Jasmine-Karma testing, and etc. These are all built-in baked into Angular. In other frameworks these may be provided by separate and disparate 3rd-party libraries. The latest Angular compiler has greatly improved in generating smaller code.
 
-This demo code started out as a clone of the [PrimeNG Angular-CLI](https://github.com/primefaces/primeng-quickstart-cli) project. I have largely maintained this demo code project. I tweaked it to make room for the tree-demo page by adding the ***Tree Demo*** button and implemented routing. It is in the ***Tree Demo*** page where we implement the client code in this tutorial.
+#### Client code GUI
 
 I added the ***Tree Demo*** button to display the tree-demo page:
 <br/>
@@ -260,6 +264,8 @@ The ***Tree Demo*** page where we implement the client code in this tutorial:
 <br/>
 <kbd><img src="images/primeng-tree-demo3.png" width="650"/></kbd>
 <br/>
+
+#### Client code organization
 
 Our Angular code consists of 6 files located in folder [src/client/src/app](https://github.com/cydriclopez/pgsql-query-json/tree/main/src/client/src/app). They are sorted by function.
 
@@ -272,11 +278,16 @@ Our Angular code consists of 6 files located in folder [src/client/src/app](http
 | 5 | home.component.ts | [src/client/src/app/home/home.component.ts](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/client/src/app/home/home.component.ts) | default component without much functionality |
 | 6 | app.module.ts | [src/client/src/app/app.module.ts](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/client/src/app/app.module.ts) | inherited much from Primeng demo but added routing functionality |
 
+The client code is pretty basic. Much of the functionality in talking to the server-side Go code is implemented in ***#3 nodeservice.ts*** which is declared as a singleton class. This is a simple demo that introduces the idea of using Angular's singleton service as the canonical source of application state or data your app may need.
 
+I use a basic existing public demo code and simply tweak them into how I would like to see them coded if I were the **IT Manager** or **Tech Lead**. A simple solid basic foundation wards off a lot of future refactoring headaches. My goal is to preach the idea that components are for UI display. Application state, data, and logic must be off-loaded to a service.
 
-
+When your app expands in feature and functionality, components that need access to a central state or data can be loosely coupled using observables defined within a service. It is in this code modularization that Angular shines. **Checkout Angular you may just like it.**
 
 ### 6. Go server code
+
+
+
 ### 7. PostgreSQL code
 ### 8. Running the Go ***webserv*** app
 ### 9. Conclusion
