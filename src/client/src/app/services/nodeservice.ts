@@ -41,6 +41,7 @@ export class NodeService {
     }
 
     getTreeNodes() {
+        // Get the tree JSON data
         this.loadTreeNodes().then(treeNodes => {
             this.treeNodes = treeNodes;
 
@@ -53,6 +54,7 @@ export class NodeService {
     }
 
     loadTreeNodes() {
+        // Call the API to load the tree JSON data
         return this.http.get<any>('/api/gettreejsondata/')
           .toPromise()
           .then(res => <TreeNode2[]>res.data);
@@ -71,7 +73,7 @@ export class NodeService {
         }
     }
 
-    // Restore expanded or collapsed nodes
+    // Recursively restore expanded or collapsed nodes
     restoreRecursive(node: TreeNode2) {
         node.expanded = node.toexpand;
         if (node.children) {
@@ -81,7 +83,8 @@ export class NodeService {
         }
     }
 
-    // Expand or collapse all nodes
+    // Expand or collapse all nodes depending
+    // on isExpand = true/false.
     expandRecursive(node: TreeNode2, isExpand: boolean) {
         node.expanded = node.toexpand = isExpand;
         if (node.children) {
@@ -101,10 +104,10 @@ export class NodeService {
             this.saveToexpand(node);
         });
 
-        // The JSON.stringify replacer array parameter will flatten the json
+        // The JSON.stringify replacer array parameter will flatten the JSON
         // to prevent circular references. Fields 'key', 'parent', and 'leaf'
-        // are filtered-out and inferred from the json structure. PostgreSQL
-        // can traverse thru the json and fill-in these fields from the structure.
+        // are filtered-out and inferred from the JSON structure. PostgreSQL
+        // can traverse thru the JSON and fill-in these fields from the structure.
         const json = JSON.stringify(this.treeNodes,
             [
                 'label', 'icon', 'expandedIcon', 'collapsedIcon',

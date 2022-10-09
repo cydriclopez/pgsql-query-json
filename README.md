@@ -9,7 +9,7 @@
 2. [Goal](https://github.com/cydriclopez/pgsql-query-json#2-goal)
 3. [Clone this repo](https://github.com/cydriclopez/pgsql-query-json#3-clone-this-repo)
 4. [Docker stuff](https://github.com/cydriclopez/pgsql-query-json#4-docker-stuff)
-5. [Angular code](https://github.com/cydriclopez/pgsql-query-json#5-angular-code)
+5. [Client code](https://github.com/cydriclopez/pgsql-query-json#5-client-code)
 6. [Go server code](https://github.com/cydriclopez/pgsql-query-json#6-go-server-code)
 7. [PostgreSQL code](https://github.com/cydriclopez/pgsql-query-json#7-postgresql-code)
 8. [Running the ***webserv*** app](https://github.com/cydriclopez/pgsql-query-json#8-running-the-go-webserv-app)
@@ -181,33 +181,38 @@ user1@penguin:~/Projects/github/pgsql-query-json/src/docker$
 :pgstart
 postgres14
 
+# Now that Postgresql is up, let's connect to it with "psql"
 user1@penguin:~/Projects/github/pgsql-query-json/src/docker$
 :psql
+
 psql (14.5 (Debian 14.5-1.pgdg110+1))
 Type "help" for help.
 
-# Try query the Postgresql version. It works!
+# You are now inside the Postgresql docker container.
+# Try query the Postgresql version.
 postgres=# select version();
                                                            version
 -----------------------------------------------------------------------------------------------------------------------------
  PostgreSQL 14.5 (Debian 14.5-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
 (1 row)
 
-# Exit out of Postgresql
+# The query "select version();" works!
+# For now let's exit out of Postgresql.
 postgres=# \q
 
 # We are back into our bash console. Try run Angular.
 user1@penguin:~/Projects/github/pgsql-query-json/src/docker$
 :angular
-/home/node/ng # ng -v
 
+# You are now inside the Angular docker container.
+# Display the Angular version.
+/home/node/ng # ng -v
      _                      _                 ____ _     ___
     / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
    / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
   / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
  /_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
                 |___/
-
 
 Angular CLI: 14.2.5
 Node: 14.18.3
@@ -227,13 +232,46 @@ Package                      Version
 # Yay! Angular works! Let's exit for now.
 /home/node/ng # exit
 
-# We are back again in our local bash session
+# We are back again in our local bash session.
+# We'll take a look at the Angular code next.
 user1@penguin:~/Projects/github/pgsql-query-json/src/docker$
 :
 ```
-Gone are the days of mind-numbing complexity of manually installing software. Using Docker images and containers beats having to manually install software for development and deployment. Docker just solves a lot of IT pain in development and deployment. ***IT departments not yet using Docker are still in the dark ages!*** There are now alternatives in [Podman and Buildah](https://developers.redhat.com/blog/2019/02/21/podman-and-buildah-for-docker-users), or even [LXD](https://linuxcontainers.org/lxd/) that are quite effective and highly useful.
+Gone are the days of the mind-numbing complexity of manually installing software. Using Docker images and containers beat having to manually install software for development and deployment. Docker just solves a lot of IT pain in software development and deployment.
 
-### 5. Angular code
+IT departments, who are not availing of software container (OS-level virtualization) systems, are still in the IT dark ages. These are valuable solutions to several key painful challenges in IT.
+
+There are now alternatives in [Podman and Buildah](https://developers.redhat.com/blog/2019/02/21/podman-and-buildah-for-docker-users), or even [LXD/LXC](https://linuxcontainers.org/lxd/) that are quite effective and highly useful.
+
+### 5. Client code
+
+Our client code is written in ***Angular/TypeScript*** but it can be translated to any other web framework. People make a big deal of Angular's learning curve. Once you get over Angular's being a highly opinionated framework, then you will realize it is quite elegantly designed actually. It has built-in formalizations of stuff like Components, Directives, Dependency Injection, Singleton Service, PWA web service worker, RxJS Observables, Jasmine-Karma testing, and etc. These are all built-in baked into Angular. In other frameworks these may be provided by separate and disparate 3rd-party libraries.
+
+This demo code started out as a clone of the [PrimeNG Angular-CLI](https://github.com/primefaces/primeng-quickstart-cli) project. I have largely maintained this demo code project. I tweaked it to make room for the tree-demo page by adding the ***Tree Demo*** button and implemented routing. It is in the ***Tree Demo*** page where we implement the client code in this tutorial.
+
+I added the ***Tree Demo*** button to display the tree-demo page:
+<br/>
+<img src="images/primeng-quickstart-cli.png" width="650"/>
+<br/>
+
+The ***Tree Demo*** page where we implement the client code in this tutorial:
+<br/>
+<kbd><img src="images/primeng-tree-demo3.png" width="650"/></kbd>
+<br/>
+
+Our Angular code consists of 6 files located in folder [src/client/src/app](https://github.com/cydriclopez/pgsql-query-json/tree/main/src/client/src/app). They are sorted by prominence.
+
+| # | file   | location | purpose |
+| --- | ----------- | --- | ----------- |
+| 1 | treedemo.component.html | [src/client/src/app/treedemo/treedemo.component.html](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/client/src/app/treedemo/treedemo.component.html) | treedemo component template |
+| 2 | treedemo.component.ts | [src/client/src/app/treedemo/treedemo.component.ts](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/client/src/app/treedemo/treedemo.component.ts) | treedemo component class |
+| 3 | nodeservice.ts | [src/client/src/app/services/nodeservice.ts](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/client/src/app/services/nodeservice.ts) | treedemo data service |
+| 4 | home.component.html | [src/client/src/app/home/home.component.html](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/client/src/app/home/home.component.html) | main template with nothing but router outlet |
+| 5 | home.component.ts | [src/client/src/app/home/home.component.ts](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/client/src/app/home/home.component.ts) | default component without much functionality |
+| 6 | app.module.ts | [src/client/src/app/app.module.ts](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/client/src/app/app.module.ts) | inherited much from Primeng demo but added routing functionality |
+
+
+
 
 
 ### 6. Go server code
