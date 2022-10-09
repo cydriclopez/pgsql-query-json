@@ -261,7 +261,7 @@ The ***Tree Demo*** page where we implement the client code in this tutorial:
 <kbd><img src="images/primeng-tree-demo3.png" width="650"/></kbd>
 <br/>
 
-Our Angular code consists of 6 files located in folder [src/client/src/app](https://github.com/cydriclopez/pgsql-query-json/tree/main/src/client/src/app). They are sorted by prominence.
+Our Angular code consists of 6 files located in folder [src/client/src/app](https://github.com/cydriclopez/pgsql-query-json/tree/main/src/client/src/app). They are sorted by function.
 
 | # | file   | location | purpose |
 | --- | ----------- | --- | ----------- |
