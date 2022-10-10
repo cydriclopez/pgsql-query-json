@@ -137,7 +137,11 @@ user1@penguin:~/Projects/github/pgsql-query-json/src/docker$
 
 ### 4. Docker stuff
 
+#### 4.1. Learning by sharing
+
 I have tried to decouple my "docker run" aliases from the ***~/.bashrc*** file. You can tell that I am new to this thing. I learn as I go. Nothing beats learning by having to teach it. As the adage goes "You can only teach what you have learned." Or, "If you cannot teach it, then you haven't really learned it." 😊
+
+#### 4.2. Docker code list
 
 Our Docker code consists of 5 files located in folder [src/docker](https://github.com/cydriclopez/pgsql-query-json/tree/main/src/docker).
 
@@ -148,6 +152,8 @@ Our Docker code consists of 5 files located in folder [src/docker](https://githu
 | 3 | docker_init.sh | [src/docker/docker_init.sh](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/docker/docker_init.sh) | create Angular & Postgresql containers |
 | 4 | postgres.dockerfile | [src/docker/postgres.dockerfile](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/docker/postgres.dockerfile) | create Postgresql image |
 | 5 | README.md | [src/docker/README.md](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/docker/README.md) | readme file |
+
+#### 4.3. Docker images, containers, and aliases
 
 As shown below we will run ***source docker_init.sh*** to create the Angular & Postgresql images and containers (the running instance of images). This we will only run once. After our images and containers are created then we can simply run ***source docker_alias.sh*** to create our aliases. These aliases are shortcuts to docker commands.
 
@@ -237,15 +243,18 @@ Package                      Version
 user1@penguin:~/Projects/github/pgsql-query-json/src/docker$
 :
 ```
+
+#### 4.4. Merits of OS-level virtualization
+
 Gone are the days of the mind-numbing complexity of manually installing software. Using Docker images and containers beat having to manually install software for development and deployment. Docker just solves a lot of IT pain in software development and deployment.
 
-IT departments, who are not availing of software container (OS-level virtualization) systems, are still in the IT dark ages. These are valuable solutions to several key painful challenges in IT.
+<ins>**IT departments, who are not yet availing of OS-level virtualization or software container systems, are still in the IT dark ages.**</ins> These are valuable solutions for several key tough challenges in IT.
 
 There are now alternatives in [Podman and Buildah](https://developers.redhat.com/blog/2019/02/21/podman-and-buildah-for-docker-users), or even [LXD/LXC](https://linuxcontainers.org/lxd/) that are quite effective and highly useful.
 
 ### 5. Client code
 
-#### Client code origin
+#### 5.1. Client code origin
 
 This demo code started out as a clone of the [PrimeNG Angular-CLI](https://github.com/primefaces/primeng-quickstart-cli) project. I have largely maintained this demo code project. I tweaked it to make room for the tree-demo page by adding the ***Tree Demo*** button and implemented routing. It is in the ***Tree Demo*** page where we implement the client code in this tutorial.
 
@@ -253,7 +262,7 @@ Our client code is written in ***Angular/TypeScript*** but it can be translated 
 
 Angular has built-in formalizations of stuff like Components, Directives, Dependency Injection, Singleton Service, PWA web service worker, RxJS Observables, Jasmine-Karma testing, and etc. These are all built-in baked into Angular. In other frameworks these may be provided by separate and disparate 3rd-party libraries. The latest Angular compiler has greatly improved in generating smaller code.
 
-#### Client code GUI
+#### 5.2. Client code GUI
 
 I added the ***Tree Demo*** button to display the tree-demo page:
 <br/>
@@ -265,7 +274,7 @@ The ***Tree Demo*** page where we implement the client code in this tutorial:
 <kbd><img src="images/primeng-tree-demo3.png" width="650"/></kbd>
 <br/>
 
-#### Client code organization
+#### 5.3. Client code organization
 
 Our Angular code consists of 6 files located in folder [src/client/src/app](https://github.com/cydriclopez/pgsql-query-json/tree/main/src/client/src/app). They are sorted by function.
 
@@ -282,10 +291,40 @@ The client code is pretty basic. Much of the functionality in talking to the ser
 
 I use a basic existing public demo code and simply tweak them into how I would like to see them coded if I were the **IT Manager** or **Tech Lead**. A simple solid basic foundation wards off a lot of future refactoring headaches. My goal is to preach the idea that components are for UI display. Application state, data, and logic must be off-loaded to a service.
 
-When your app expands in feature and functionality, components that need access to a central state or data can be loosely coupled using observables defined within a service. It is in this code modularization that Angular shines. **Checkout Angular you may just like it.**
+When your app expands in feature and functionality, components that need access to a central state or data can be loosely coupled using observables defined within a service. It is in this code modularization that Angular shines. **Checkout Angular you may just like it!**
+
+#### 5.4. Compiling Angular code
+
+```bash
+# From your home folder cd into this project's cloned folder
+user1@penguin:~$
+:cd ~/Projects/github/pgsql-query-json
+
+#
+user1@penguin:~/Projects/github/pgsql-query-json$
+:source src/docker/docker_alias.sh
+
+user1@penguin:~/Projects/github/pgsql-query-json$
+:angular
+
+
+```
+
 
 ### 6. Go server code
 
+#### 6.1. Go server app in 4 packages
+
+The Go server-side code is simple.
+
+We have refactored the previous tutorial's Go code into [4 packages](https://github.com/cydriclopez/pgsql-parse-json/tree/main/src/server). We have done just a few refactors: 1.) We added the ***common*** package, and 2.) altered the method ***saveJsonData()*** in package ***treedata***. We have mostly inherited from the Go code in the previous tutorial [Go POST JSON passthru controller](https://github.com/cydriclopez/go-post-json-passthru/tree/main/src/server).
+
+| # | package   | file | purpose |
+| --- | ----------- | --- | ----------- |
+| 1 | main | [src/server/webserv.go](https://github.com/cydriclopez/pgsql-parse-json/blob/main/src/server/webserv.go) | main ***webserv*** executable  |
+| 2 | common | [src/server/common/common.go](https://github.com/cydriclopez/pgsql-parse-json/blob/main/src/server/common/common.go) | Postgresql connector  |
+| 3 | params | [src/server/params/params.go](https://github.com/cydriclopez/pgsql-parse-json/blob/main/src/server/params/params.go) | process the command-line args |
+| 4 | treedata | [src/server/treedata/treedata.go](https://github.com/cydriclopez/pgsql-parse-json/blob/main/src/server/treedata/treedata.go) | process the tree JSON data |
 
 
 ### 7. PostgreSQL code
