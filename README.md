@@ -157,7 +157,7 @@ Our Docker code consists of 5 files located in folder [src/docker](https://githu
 
 As shown below we will run ***source docker_init.sh*** to create the Angular & Postgresql images and containers (the running instance of images). This we will only run once. After our images and containers are created then we can simply run ***source docker_alias.sh*** to create our aliases. These aliases are shortcuts to docker commands.
 
-Follow carefully the command line instructions (cli) below to create the needed docker images and containers for this project. Comment lines start with character "#".
+Follow carefully the terminal command line instructions (cli) below to create the needed docker images and containers for this project. Comment lines start with character "#".
 
 ```bash
 # ll is my alias for "ls --color -lah --group-directories-first" command
@@ -295,20 +295,89 @@ When your app expands in feature and functionality, components that need access 
 
 #### 5.4. Compiling Angular code
 
+Follow carefully the terminal command line instructions below to compile our Angular project. Comment lines start with character "#".
+
 ```bash
 # From your home folder cd into this project's cloned folder
 user1@penguin:~$
 :cd ~/Projects/github/pgsql-query-json
 
-#
+# Load docker alias definitions from docker_alias.sh
 user1@penguin:~/Projects/github/pgsql-query-json$
 :source src/docker/docker_alias.sh
 
+# With docker aliases loaded we can now run "angular"
 user1@penguin:~/Projects/github/pgsql-query-json$
 :angular
 
+# Now we are inside the Angular docker container.
+# Let us list the contents in this directory.
+/home/node/ng # ls -l
 
+drwxr-xr-x    1 root     root             0 Jul 28 23:51 go-post-json-passthru
+drwxr-xr-x    1 node     node           272 Oct  3 05:35 pgsql-query-json
+drwxr-xr-x    1 node     node           248 Jul 28 23:41 treemodule-json
 ```
+
+The directory listing above is the result of our Angular alias definition. Note that in [4.2. Docker code list](https://github.com/cydriclopez/pgsql-query-json#42-docker-code-list) bash script [docker_alias.sh](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/docker/docker_alias.sh) we defined the ***angular*** alias as:
+
+```bash
+alias angular='docker run -it --rm \
+-p 4200:4200 -p 9876:9876 \
+-v /home/user1/Projects/ng:/home/node/ng \
+-v /home/user1/Projects/github/treemodule-json/src/client\
+:/home/node/ng/treemodule-json \
+-v /home/user1/Projects/github/pgsql-query-json/src/client\
+:/home/node/ng/pgsql-query-json \
+-w /home/node/ng angular /bin/sh'
+```
+
+The directory listing above is the accumulation of mapped directories using the ***-v*** parameter in the ***Angular*** alias definition above.
+
+Now let us continue with our preceding bash session:
+```bash
+# Now we are inside the Angular docker container.
+# We cd into our project folder pgsql-query-json
+/home/node/ng # cd pgsql-query-json
+
+# This is actually our local folder
+# ~/Projects/github/pgsql-query-json/src/client
+# mapped into the container's folder
+# /home/node/ng/pgsql-query-json
+# Here we compile our Angular project with "ng build --watch".
+# "--watch" automatically recompile on any code changes.
+# This will take a few seconds.
+/home/node/ng/pgsql-query-json # ng build --watch
+
+✔ Browser application bundle generation complete.
+✔ Index html generation complete.
+
+Initial Chunk Files | Names         |      Size
+vendor.js           | vendor        |   3.64 MB
+styles.css          | styles        | 241.78 kB
+polyfills.js        | polyfills     | 216.88 kB
+main.js             | main          |  63.03 kB
+runtime.js          | runtime       |   6.40 kB
+
+                    | Initial Total |   4.15 MB
+
+Build at: 2022-10-10T10:32:50.778Z - Hash: b6290d8b6a48d34a - Time: 9645ms
+
+# At this point our Angular code is compiled into a bunch of
+# Javascript and other static assets files.
+# We press ctrl+c to exit.
+^C
+# Then type exit to exit out of the Angular docker container
+/home/node/ng/pgsql-query-json # exit
+
+# Now we are back in our local bash session
+user1@penguin:~/Projects/github/pgsql-query-json$
+:
+```
+
+At this point Angular static code is generated in our local folder: ***~/Projects/github/pgsql-query-json/src/client/dist/primeng-quickstart-cli***
+
+This is the directory we will feed our Go server app ***webserv*** which we will discuss next.
 
 
 ### 6. Go server code
