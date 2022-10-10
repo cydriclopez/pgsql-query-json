@@ -382,9 +382,9 @@ This is the directory we will feed our Go server app ***webserv*** which we will
 
 ### 6. Go server code
 
-#### 6.1. Go server app in 4 packages
+#### 6.1. Go server-side code organization
 
-The Go server-side code is simple. We have mostly inherited from the Go code in the previous tutorial [Parse JSON in PostgreSQL to save records](https://github.com/cydriclopez/pgsql-parse-json).
+Our Go server-side code consists of 4 packages files located in [src/server](https://github.com/cydriclopez/pgsql-query-json/tree/main/src/server) directory. We have mostly inherited from the Go code in the previous tutorial [Parse JSON in PostgreSQL to save records](https://github.com/cydriclopez/pgsql-parse-json). The Go server-side code is simple. Most of our new code is in the [treedata](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/server/treedata/treedata.go) package.
 
 | # | package   | file | purpose |
 | --- | ----------- | --- | ----------- |
