@@ -364,7 +364,7 @@ runtime.js          | runtime       |   6.40 kB
 Build at: 2022-10-10T10:32:50.778Z - Hash: b6290d8b6a48d34a - Time: 9645ms
 
 # At this point our Angular code is compiled into a bunch of
-# Javascript and other static assets files.
+# Javascript and other static asset files.
 # We press ctrl+c to exit.
 ^C
 # Then type exit to exit out of the Angular docker container
@@ -384,16 +384,14 @@ This is the directory we will feed our Go server app ***webserv*** which we will
 
 #### 6.1. Go server app in 4 packages
 
-The Go server-side code is simple.
-
-We have refactored the previous tutorial's Go code into [4 packages](https://github.com/cydriclopez/pgsql-parse-json/tree/main/src/server). We have done just a few refactors: 1.) We added the ***common*** package, and 2.) altered the method ***saveJsonData()*** in package ***treedata***. We have mostly inherited from the Go code in the previous tutorial [Go POST JSON passthru controller](https://github.com/cydriclopez/go-post-json-passthru/tree/main/src/server).
+The Go server-side code is simple. We have mostly inherited from the Go code in the previous tutorial [Parse JSON in PostgreSQL to save records](https://github.com/cydriclopez/pgsql-parse-json).
 
 | # | package   | file | purpose |
 | --- | ----------- | --- | ----------- |
-| 1 | main | [src/server/webserv.go](https://github.com/cydriclopez/pgsql-parse-json/blob/main/src/server/webserv.go) | main ***webserv*** executable  |
-| 2 | common | [src/server/common/common.go](https://github.com/cydriclopez/pgsql-parse-json/blob/main/src/server/common/common.go) | Postgresql connector  |
-| 3 | params | [src/server/params/params.go](https://github.com/cydriclopez/pgsql-parse-json/blob/main/src/server/params/params.go) | process the command-line args |
-| 4 | treedata | [src/server/treedata/treedata.go](https://github.com/cydriclopez/pgsql-parse-json/blob/main/src/server/treedata/treedata.go) | process the tree JSON data |
+| 1 | main | [src/server/webserv.go](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/server/webserv.go) | main ***webserv*** executable  |
+| 2 | common | [src/server/common/common.go](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/server/common/common.go) | Postgresql connector  |
+| 3 | params | [src/server/params/params.go](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/server/params/params.go) | process the command-line args |
+| 4 | treedata | [src/server/treedata/treedata.go](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/server/treedata/treedata.go) | process the tree JSON data |
 
 
 ### 7. PostgreSQL code
