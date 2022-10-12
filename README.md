@@ -177,11 +177,11 @@ drwxr-xr-x 1 user1 user1   46 Oct  2 21:25 ..
 # to create the Angular & Postgresql containers.
 user1@penguin:~/Projects/github/pgsql-query-json/src/docker$
 :source docker_init.sh
- .
- :
+  .
+  :
 [truncated Docker messages]
- .
- :
+  .
+  :
 # At this point our Angular & Postgresql images & containers are ready
 user1@penguin:~/Projects/github/pgsql-query-json/src/docker$
 :pgstart
@@ -344,11 +344,21 @@ Now let us continue with our preceding bash session:
 # ~/Projects/github/pgsql-query-json/src/client
 # mapped into the container's folder
 # /home/node/ng/pgsql-query-json
+/home/node/ng/pgsql-query-json # npm install
+  .
+  :
+[truncated npm install messages]
+  .
+  :
 # Here we compile our Angular project with "ng build --watch".
 # "--watch" automatically recompile on any code changes.
 # This will take a few seconds.
 /home/node/ng/pgsql-query-json # ng build --watch
-
+  .
+  :
+[truncated Angular build (compile) messages]
+  .
+  :
 ✔ Browser application bundle generation complete.
 ✔ Index html generation complete.
 
