@@ -341,16 +341,19 @@ Now let us continue with our preceding bash session:
 /home/node/ng # cd pgsql-query-json
 
 # This is actually our local folder
-# ~/Projects/github/pgsql-query-json/src/client
+#    ~/Projects/github/pgsql-query-json/src/client
 # mapped into the container's folder
-# /home/node/ng/pgsql-query-json
+#    /home/node/ng/pgsql-query-json.
+# Here we install all packages in package.json file.
+# These packages will be stored in node_modules folder.
 /home/node/ng/pgsql-query-json # npm install
   .
   :
 [truncated npm install messages]
   .
   :
-# Here we compile our Angular project with "ng build --watch".
+# Now that we have the required packages then we can
+# compile our Angular project with "ng build --watch".
 # "--watch" automatically recompile on any code changes.
 # This will take a few seconds.
 /home/node/ng/pgsql-query-json # ng build --watch
