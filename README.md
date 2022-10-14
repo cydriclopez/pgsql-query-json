@@ -28,7 +28,7 @@ In this tutorial I have tried to simplify the docker code. I have tried to decou
 
 ### 2. Scope
 
-This tutorial simply presents a narrow topic of JSON data passing between the client and the server, specifically the Postgresql database server. There is a dearth of material on this specific topic so I endeavored to write about it. With Angular JSON is the primary way of talking to a server via APIs. I also try to highlight the Postgresql JSON features.
+This tutorial simply presents the narrow topic of JSON data passing between the client and the server, specifically the Postgresql database server. There is a dearth of material on this specific topic so I endeavored to write about it. With Angular, JSON is the primary way of talking to a server via APIs. I also try to highlight the Postgresql JSON features.
 
 Here we will not discuss authentication/authorization, logging, deployment, and data replication, caching and backup. We will also not cover unit, integration, and end-to-end testing. So much more is involved in a full-stack web app development. I am trying to fit writing this tutorial into my current obligations. I have to narrow down the scope or else, I will have to make you sign a non-diclosure agreement. Just kidding!😊
 
