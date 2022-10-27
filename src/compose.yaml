@@ -1,0 +1,39 @@
+# cd ~/Projects
+# docker compose build --no-cache
+# docker compose up --remove-orphans
+
+services:
+  postgres:
+    image: postgres:14
+    container_name: postgres14
+    ports:
+      - "5432:5432"
+    network_mode: host
+    volumes:
+      - type: volume
+        source: postgres_volume
+        target: /var/lib/postgresql/data
+      - ./pgsql:/home
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: "my-postgres-password"
+
+  webapp:
+    image: webapp:1.0
+    container_name: webapp
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: webapp-1.0
+    ports:
+      - "3000:3000"
+    network_mode: host
+    restart: always
+    volumes:
+      - ./client/dist/primeng-quickstart-cli:/root/static
+      - ./server/bin:/root
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_volume:

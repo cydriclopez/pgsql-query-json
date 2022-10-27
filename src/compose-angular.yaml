@@ -1,0 +1,11 @@
+# cd ~/Projects
+# docker compose -f compose-angular.yaml build
+
+services:
+  angular:
+    image: angular:latest
+    container_name: angular
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: angular
