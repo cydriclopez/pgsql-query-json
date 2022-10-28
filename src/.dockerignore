@@ -1,5 +1,7 @@
 # Ignore everything
 *
+server/bin/.gitkeep
+server/bin/.bash_history
 
 # Allow files and folders with a pattern starting with !
 !server/bin
