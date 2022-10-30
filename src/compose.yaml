@@ -24,6 +24,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      # Alternative in-image compile using 2-stage image build
+      # dockerfile: Dockerfile_golang
       target: webapp-1.0
     ports:
       - "3000:3000"

@@ -1,0 +1,25 @@
+# cd ~/Projects
+# Multi-stage build using golang image
+# docker build -f Dockerfile_golang .
+
+# Builder stage
+# Use the golang image with compiler
+FROM golang:bullseye AS builder
+WORKDIR /code/bin/static
+WORKDIR /code
+COPY ./server .
+RUN go mod download && go mod verify
+# Compile into bin folder
+RUN go build -o ./bin ./...
+# Copy Angular compiled static files
+WORKDIR /code/bin/static
+COPY ./client/dist/primeng-quickstart-cli .
+
+# Final stage
+# Use recommended debian slim image.
+# Alpine images are experimental.
+FROM debian:bullseye-slim AS webapp-1.0
+WORKDIR /root/static
+WORKDIR /root
+COPY --from=builder /code/bin ./
+ENTRYPOINT ["/root/webserv", "/root/static"]
