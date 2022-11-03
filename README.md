@@ -258,7 +258,7 @@ Browse the webapp in http://localhost:3000.
 
 #### 9.1. I added the ***Tree Demo*** button to display the tree-demo page:
 <br/>
-<img src="images/primeng-quickstart-cli.png" width="650"/>
+<kbd><img src="images/primeng-quickstart-cli.png" width="650"/></kbd>
 <br/>
 
 #### 9.2. The ***Tree Demo*** page where we implement the client code in this tutorial:
