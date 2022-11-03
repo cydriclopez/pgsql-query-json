@@ -268,7 +268,7 @@ Browse the webapp in http://localhost:3000.
 
 ### 10. Conclusion
 
-This is the end of this JSON processing tutorial series. The key is the proper coordination of various key pieces of code. The key pieces are Postgresql code in ***tree_insert.sql*** and ***tree_json.sql***.
+This is the end of this JSON processing tutorial series. The key is the proper coordination of various key pieces of code. The key pieces are Postgresql code in [tree_insert.sql](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/pgsql/tree_insert.sql) and [tree_json.sql](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/pgsql/tree_json.sql).
 
 Happy coding! 😊
 ---
