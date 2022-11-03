@@ -1,4 +1,4 @@
-# cd ~/Projects
+# cd ~/Projects/github/pgsql-query-json/src
 # docker compose -f compose-angular.yaml build
 
 services:

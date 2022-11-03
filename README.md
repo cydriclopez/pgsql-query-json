@@ -8,12 +8,12 @@
 1. [Introduction](https://github.com/cydriclopez/pgsql-query-json#1-introduction)
 2. [Scope](https://github.com/cydriclopez/pgsql-query-json#2-scope)
 3. [Goal](https://github.com/cydriclopez/pgsql-query-json#3-goal)
-4. [Clone this repo](https://github.com/cydriclopez/pgsql-query-json#4-clone-this-repo)
+4. [Clone this project](https://github.com/cydriclopez/pgsql-query-json#4-clone-this-project)
 5. [Docker stuff](https://github.com/cydriclopez/pgsql-query-json#5-docker-stuff)
 6. [Client code](https://github.com/cydriclopez/pgsql-query-json#6-client-code)
-7. [Go server code](https://github.com/cydriclopez/pgsql-query-json#7-go-server-code)
+7. [Server code](https://github.com/cydriclopez/pgsql-query-json#7-server-code)
 8. [PostgreSQL code](https://github.com/cydriclopez/pgsql-query-json#8-postgresql-code)
-9. [Running the ***webserv*** app](https://github.com/cydriclopez/pgsql-query-json#9-running-the-go-webserv-app)
+9. [Running the ***webserv*** app](https://github.com/cydriclopez/pgsql-query-json#9-running-the-webserv-app)
 10. [Conclusion](https://github.com/cydriclopez/pgsql-query-json#10-conclusion)
 
 ### 1. Introduction
@@ -109,315 +109,166 @@ And then feed this JSON data into our web app for display in our tree component:
 <kbd><img src="images/primeng-tree-demo3.png" width="650"/></kbd>
 <br/>
 
-### 4. Clone this repo
+### 4. Clone this project
 
 I assume you know about [GNU/Linux](https://www.debian.org/releases/jessie/amd64/ch01s02.html.en). I also assume you have [Docker](https://docs.docker.com/engine/install/) and [Git](https://git-scm.com/download/linux) installed. These are basic essentials for software developers these days and life without them is just impossible.😊
 
-In my ***~/.bashrc*** file I have a line ***export PS1=$PS1'\n:'*** which results in my command line prompt as shown below (i.e. ***user1@penguin:~\$***). This way no matter how long is my path, my prompt is always on the next line down then second character from the left and right after the colon ":" character. I have just added extra line-feed and comments (starts with #) between prompts for clarity.
-
-To lessen confusion, as far as folders are concerned, I have adopted ***~/Projects/github/*** as the root project folder for this tutorial. I trust that you know what you are doing if you divert from this norm.
+To lessen confusion, as far as folders are concerned, I have adopted ***~/Projects/github/*** as the root project folder for this tutorial. **I trust that you know what you are doing if you divert from this norm.**
 
 Follow carefully the command line instructions (cli) below to clone this project.
 
 ```bash
-# From your home folder make a directory ~/Projects/github.
-# The -p parameter creates the whole path if it does not exist.
-user1@penguin:~$
-:mkdir -p ~/Projects/github
+# 4.1. Create then change into our root project folder
+$ mkdir -p ~/Projects/github
+$ cd ~/Projects/github
 
-# Change directory into the just created folder
-user1@penguin:~$
-:cd ~/Projects/github
+# 4.2. Clone this project
+$ git clone https://github.com/cydriclopez/pgsql-query-json.git
 
-# Clone this project
-user1@penguin:~/Projects/github$
-:git clone https://github.com/cydriclopez/pgsql-query-json.git
+# 4.3. Change into the project's src directory
+$ cd pgsql-query-json/src
 
-# Change directory into the just cloned docker stuff folder.
-user1@penguin:~/Projects/github$
-:cd pgsql-query-json/src/docker
-
-# This is the folder with all the docker stuff discussed next
-user1@penguin:~/Projects/github/pgsql-query-json/src/docker$
-:
+# 4.4. Directory src is where we run our docker commands
+$ pwd
+~/Projects/github/pgsql-query-json/src
 ```
 
 ### 5. Docker stuff
 
-#### 5.1. Learning by sharing
+I have refreshed this Docker section to use ***docker compose*** to create the necessary docker images.
 
-I have tried to decouple my "docker run" aliases from the ***~/.bashrc*** file. You can tell that I am new to this thing. I learn as I go. Nothing beats learning by having to teach it. As the adage goes "You can only teach what you have learned." Or, "If you cannot teach it, then you haven't really learned it." 😊
-
-#### 5.2. Docker code list
-
-Our Docker code consists of 5 files located in folder [src/docker](https://github.com/cydriclopez/pgsql-query-json/tree/main/src/docker).
+Our Docker code consists of 5 files located in folder [pgsql-query-json/src](https://github.com/cydriclopez/pgsql-query-json/tree/main/src).
 
 | # | file   | location | purpose |
 | --- | ----------- | --- | ----------- |
-| 1 | angular.dockerfile | [src/docker/angular.dockerfile](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/docker/angular.dockerfile) | create Angular image |
-| 2 | docker_alias.sh | [src/docker/docker_alias.sh](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/docker/docker_alias.sh) | create "docker run" aliases |
-| 3 | docker_init.sh | [src/docker/docker_init.sh](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/docker/docker_init.sh) | create Angular & Postgresql containers |
-| 4 | postgres.dockerfile | [src/docker/postgres.dockerfile](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/docker/postgres.dockerfile) | create Postgresql image |
-| 5 | README.md | [src/docker/README.md](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/docker/README.md) | readme file |
+| 1 | .dockerignore | [src/.dockerignore](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/.dockerignore) | Declare files to ignore in docker compose |
+| 2 | alias.sh | [src/alias.sh](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/alias.sh) | load command-line aliases |
+| 3 | Dockerfile | [src/Dockerfile](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/Dockerfile) | Docker compose default Dockerfile |
+| 4 | compose-angular.yaml | [src/compose-angular.yaml](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/compose-angular.yaml) | Used to build the Angular image |
+| 5 | compose.yaml | [src/compose.yaml](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/compose.yaml) | Default docker compose file |
 
-#### 5.3. Docker images, containers, and aliases
-
-As shown below we will run ***source docker_init.sh*** to create the Angular & Postgresql images and containers (the running instance of images). This we will only run once. After our images and containers are created then we can simply run ***source docker_alias.sh*** to create our aliases. These aliases are shortcuts to docker commands.
-
-Follow carefully the terminal command line instructions (cli) below to create the needed docker images and containers for this project. Comment lines start with character "#".
-
-```bash
-# ll is my alias for "ls --color -lah --group-directories-first" command
-user1@penguin:~/Projects/github/pgsql-query-json/src/docker$
-:ll
-
-drwxr-xr-x 1 user1 user1  150 Oct  5 13:32 .
-drwxr-xr-x 1 user1 user1   46 Oct  2 21:25 ..
--rw-r--r-- 1 user1 user1  500 Oct  5 13:39 angular.dockerfile
--rw-r--r-- 1 user1 user1  889 Oct  5 13:36 docker_alias.sh
--rw-r--r-- 1 user1 user1 1.2K Oct  5 13:36 docker_init.sh
--rw-r--r-- 1 user1 user1  239 Oct  5 13:38 postgres.dockerfile
--rw-r--r-- 1 user1 user1   22 Oct  2 22:39 README.md
-
-# Run "source docker_init.sh" to create the Angular &
-# Postgresql images. This will also run "source docker_alias.sh"
-# to create the Angular & Postgresql containers.
-user1@penguin:~/Projects/github/pgsql-query-json/src/docker$
-:source docker_init.sh
-  .
-  :
-[truncated Docker messages]
-  .
-  :
-# At this point our Angular & Postgresql images & containers are ready
-user1@penguin:~/Projects/github/pgsql-query-json/src/docker$
-:pgstart
-postgres14
-
-# Now that Postgresql is up, let's connect to it with "psql"
-user1@penguin:~/Projects/github/pgsql-query-json/src/docker$
-:psql
-
-psql (14.5 (Debian 14.5-1.pgdg110+1))
-Type "help" for help.
-
-# You are now inside the Postgresql docker container.
-# Try query the Postgresql version.
-postgres=# select version();
-                                                           version
------------------------------------------------------------------------------------------------------------------------------
- PostgreSQL 14.5 (Debian 14.5-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
-(1 row)
-
-# The query "select version();" works!
-# For now let's exit out of Postgresql.
-postgres=# \q
-
-# We are back into our bash console. Try run Angular.
-user1@penguin:~/Projects/github/pgsql-query-json/src/docker$
-:angular
-
-# You are now inside the Angular docker container.
-# Display the Angular version.
-/home/node/ng # ng -v
-     _                      _                 ____ _     ___
-    / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
-   / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
-  / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
- /_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
-                |___/
-
-Angular CLI: 14.2.5
-Node: 14.18.3
-Package Manager: npm 6.14.15
-OS: linux x64
-
-Angular:
-...
-
-Package                      Version
-------------------------------------------------------
-@angular-devkit/architect    0.1402.5 (cli-only)
-@angular-devkit/core         14.2.5 (cli-only)
-@angular-devkit/schematics   14.2.5 (cli-only)
-@schematics/angular          14.2.5 (cli-only)
-
-# Yay! Angular works! Let's exit for now.
-/home/node/ng # exit
-
-# We are back again in our local bash session.
-# We'll take a look at the Angular code next.
-user1@penguin:~/Projects/github/pgsql-query-json/src/docker$
-:
-```
-
-#### 5.4. Merits of OS-level virtualization
-
-Gone are the days of the mind-numbing complexity of manually installing software. Using Docker images and containers beat having to manually install software for development and deployment. Docker just solves a lot of IT pain in software development and deployment.
-
-<ins>**IT departments, who are not yet availing of OS-level virtualization or software container systems, are still in the IT dark ages.**</ins> These are valuable solutions for several key tough challenges in IT.
-
-There are now alternatives in [Podman and Buildah](https://developers.redhat.com/blog/2019/02/21/podman-and-buildah-for-docker-users), or even [LXD/LXC](https://linuxcontainers.org/lxd/) that are quite effective and highly useful.
 
 ### 6. Client code
 
-#### 6.1. Client code origin
+Now that this project is cloned into your ~/Projects/github/pgsql-query-json folder, it is time to create our needed docker images.
 
-This demo code started out as a clone of the [PrimeNG Angular-CLI](https://github.com/primefaces/primeng-quickstart-cli) project. I have largely maintained this demo code project. I tweaked it to make room for the tree-demo page by adding the ***Tree Demo*** button and implemented routing. It is in the ***Tree Demo*** page where we implement the client code in this tutorial.
+#### 6.1. Create Angular docker image
 
-Our client code is written in ***Angular/TypeScript*** but it can be translated to any other web framework. People make a big deal of Angular's learning curve. Once you get over Angular's being a highly opinionated framework, then you will realize it is quite elegantly designed actually. Angular projects tend to be modular and thus manageable.
+```bash
+# 6.1.1. Make sure we are in the pgsql-query-json/src folder
+$ cd ~/Projects/github/pgsql-query-json/src
+$ pwd
+~/Projects/github/pgsql-query-json/src
 
-Angular has built-in formalizations of stuff like Components, Directives, Dependency Injection, Singleton Service, PWA web service worker, RxJS Observables, Jasmine-Karma testing, and etc. These are all built-in baked into Angular. In other frameworks these may be provided by separate and disparate 3rd-party libraries. The latest Angular compiler has greatly improved in generating smaller code.
+# 6.1.2. Create Angular docker image
+$ docker compose -f compose-angular.yaml build
 
-#### 6.2. Client code GUI
+# 6.1.3. List our images
+$ docker images
 
-I added the ***Tree Demo*** button to display the tree-demo page:
+REPOSITORY   TAG             IMAGE ID       CREATED        SIZE
+angular      latest          8c737311abb5   2 days ago     171MB
+node         14.18-alpine    194cd0d85d8a   9 months ago   118MB
+```
+
+At this point our Angular docker image ***angular:latest*** is ready for use to compile our Angular source code. To run this ***angular:latest*** image we will use the ***angular*** alias defined in the script ***alias.sh*** in the next section.
+
+#### 6.2. Compile our Angular source code
+
+```bash
+# 6.2.1. Make sure we are in the pgsql-query-json/src folder
+$ cd ~/Projects/github/pgsql-query-json/src
+
+# 6.2.2. Load angular alias
+$ source alias.sh
+
+# 6.2.3. Now that the angular alias is loaded let's run it
+$ angular
+
+# 6.2.4. The angular alias brings us into the Angular container
+/home/node #
+
+# 6.2.5. Change folder into pgsql-query-json
+/home/node # cd pgsql-query-json
+
+# 6.2.6. Compile our Angular source code
+/home/node/pgsql-query-json # ng build
+
+# 6.2.7. Exit after the compile process
+/home/node/pgsql-query-json # exit
+```
+
+At this point our Angular compiled generated static code is ready to use in folder ***src/client/dist/primeng-quickstart-cli***. In the next section this generated folder is copied into our Webapp image as defined in the Dockerfile. We are using a 2-stage build, using a debian-slim image, to minimize the final Webapp docker image.
+
+### 7. Server code
+
+```bash
+# 7.1. Make sure we are in the pgsql-query-json/src folder
+$ cd ~/Projects/github/pgsql-query-json/src
+
+# 7.2. Go, Webapp, and Postgresql build
+$ docker compose build
+
+# 7.3. List our images
+$ docker images
+
+REPOSITORY   TAG             IMAGE ID       CREATED        SIZE
+webapp       1.0             a820de5e4946   44 hours ago   103MB
+angular      latest          8c737311abb5   2 days ago     171MB
+postgres     14              cecf89e3640c   2 weeks ago    376MB
+golang       bullseye        8827cedaa309   4 weeks ago    992MB
+debian       bullseye-slim   e7bb3280b4c7   4 weeks ago    80.5MB
+node         14.18-alpine    194cd0d85d8a   9 months ago   118MB
+
+# 7.4. Webapp run
+$ docker compose up
+```
+
+At this point everything is ready **except for our database.** In the next section we will prepare our database.
+
+### 8. Postgresql code
+
+```bash
+# 8.1. Make sure we are in the pgsql-query-json/src folder
+$ cd ~/Projects/github/pgsql-query-json/src
+
+# 8.2. Load psql alias
+$ source alias.sh
+
+# 8.3. Alias psql brings us inside the Postgres container
+$ psql
+psql (14.5 (Debian 14.5-2.pgdg110+2))
+Type "help" for help.
+
+# 8.4. Change directory into /home
+postgres=# \cd /home
+
+# 8.5. Create our Postgresql data structures
+postgres=# \i _prepare_db.sql
+
+# 8.6. Exit for now
+postgres=# exit
+```
+
+At this point both our webapp and Postgres database are ready.
+
+### 9. Running the ***webserv*** app
+
+Browse the webapp in http://localhost:3000.
+
+#### 9.1. I added the ***Tree Demo*** button to display the tree-demo page:
 <br/>
 <img src="images/primeng-quickstart-cli.png" width="650"/>
 <br/>
 
-The ***Tree Demo*** page where we implement the client code in this tutorial:
+#### 9.2. The ***Tree Demo*** page where we implement the client code in this tutorial:
 <br/>
 <kbd><img src="images/primeng-tree-demo3.png" width="650"/></kbd>
 <br/>
 
-#### 6.3. Client code organization
-
-Our Angular code consists of 6 files located in folder [src/client/src/app](https://github.com/cydriclopez/pgsql-query-json/tree/main/src/client/src/app). They are sorted by function.
-
-| # | file   | location | purpose |
-| --- | ----------- | --- | ----------- |
-| 1 | treedemo.component.html | [src/client/src/app/treedemo/treedemo.component.html](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/client/src/app/treedemo/treedemo.component.html) | treedemo component template |
-| 2 | treedemo.component.ts | [src/client/src/app/treedemo/treedemo.component.ts](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/client/src/app/treedemo/treedemo.component.ts) | treedemo component class |
-| 3 | nodeservice.ts | [src/client/src/app/services/nodeservice.ts](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/client/src/app/services/nodeservice.ts) | treedemo data service |
-| 4 | home.component.html | [src/client/src/app/home/home.component.html](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/client/src/app/home/home.component.html) | main template with nothing but router outlet |
-| 5 | home.component.ts | [src/client/src/app/home/home.component.ts](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/client/src/app/home/home.component.ts) | default component without much functionality |
-| 6 | app.module.ts | [src/client/src/app/app.module.ts](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/client/src/app/app.module.ts) | inherited much from Primeng demo but added routing functionality |
-
-The client code is pretty basic. Much of the functionality in talking to the server-side Go code is implemented in ***#3 nodeservice.ts*** which is declared as a singleton class. This is a simple demo that introduces the idea of using Angular's singleton service as the canonical source of application state or data your app may need.
-
-I use a basic existing public demo code and simply tweak them into how I would like to see them coded if I were the **IT Manager** or **Tech Lead**. A simple solid basic foundation wards off a lot of future refactoring headaches. My goal is to preach the idea that components are for UI display. Application state, data, and logic must be off-loaded to a service.
-
-When your app expands in feature and functionality, components that need access to a central state or data can be loosely coupled using observables defined within a service. It is in this code modularization that Angular shines. **Checkout Angular you may just like it!**
-
-#### 6.4. Compiling Angular code
-
-Follow carefully the terminal command line instructions below to compile our Angular project. Comment lines start with character "#".
-
-```bash
-# From your home folder cd into this project's cloned folder
-user1@penguin:~$
-:cd ~/Projects/github/pgsql-query-json
-
-# Load docker alias definitions from docker_alias.sh
-user1@penguin:~/Projects/github/pgsql-query-json$
-:source src/docker/docker_alias.sh
-
-# With docker aliases loaded we can now run "angular"
-user1@penguin:~/Projects/github/pgsql-query-json$
-:angular
-
-# Now we are inside the Angular docker container.
-# Let us list the contents in this directory.
-/home/node/ng # ls -l
-
-drwxr-xr-x    1 root     root             0 Jul 28 23:51 go-post-json-passthru
-drwxr-xr-x    1 node     node           272 Oct  3 05:35 pgsql-query-json
-drwxr-xr-x    1 node     node           248 Jul 28 23:41 treemodule-json
-```
-
-The directory listing above is the result of our Angular alias definition. Note that in [4.2. Docker code list](https://github.com/cydriclopez/pgsql-query-json#42-docker-code-list) bash script [docker_alias.sh](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/docker/docker_alias.sh) we defined the ***angular*** alias as:
-
-```bash
-alias angular='docker run -it --rm \
--p 4200:4200 -p 9876:9876 \
--v /home/user1/Projects/ng:/home/node/ng \
--v /home/user1/Projects/github/treemodule-json/src/client\
-:/home/node/ng/treemodule-json \
--v /home/user1/Projects/github/pgsql-query-json/src/client\
-:/home/node/ng/pgsql-query-json \
--w /home/node/ng angular /bin/sh'
-```
-
-The directory listing above is the accumulation of mapped directories using the ***-v*** parameter in the ***Angular*** alias definition above.
-
-Now let us continue with our preceding bash session:
-```bash
-# Now we are inside the Angular docker container.
-# We cd into our project folder pgsql-query-json
-/home/node/ng # cd pgsql-query-json
-
-# This is actually our local folder
-#    ~/Projects/github/pgsql-query-json/src/client
-# mapped into the container's folder
-#    /home/node/ng/pgsql-query-json.
-# Here we install all packages in package.json file.
-# These packages will be stored in node_modules folder.
-/home/node/ng/pgsql-query-json # npm install
-  .
-  :
-[truncated npm install messages]
-  .
-  :
-# Now that we have the required packages then we can
-# compile our Angular project with "ng build --watch".
-# "--watch" automatically recompile on any code changes.
-# This will take a few seconds.
-/home/node/ng/pgsql-query-json # ng build --watch
-  .
-  :
-[truncated Angular build (compile) messages]
-  .
-  :
-✔ Browser application bundle generation complete.
-✔ Index html generation complete.
-
-Initial Chunk Files | Names         |      Size
-vendor.js           | vendor        |   3.64 MB
-styles.css          | styles        | 241.78 kB
-polyfills.js        | polyfills     | 216.88 kB
-main.js             | main          |  63.03 kB
-runtime.js          | runtime       |   6.40 kB
-
-                    | Initial Total |   4.15 MB
-
-Build at: 2022-10-10T10:32:50.778Z - Hash: b6290d8b6a48d34a - Time: 9645ms
-
-# At this point our Angular code is compiled into a bunch of
-# Javascript and other static asset files.
-# We press ctrl+c to exit.
-^C
-# Then type exit to exit out of the Angular docker container
-/home/node/ng/pgsql-query-json # exit
-
-# Now we are back in our local bash session
-user1@penguin:~/Projects/github/pgsql-query-json$
-:
-```
-
-At this point Angular static code is generated in our local folder: ***~/Projects/github/pgsql-query-json/src/client/dist/primeng-quickstart-cli***
-
-This is the directory we will feed our Go server app ***webserv*** which we will discuss next.
-
-
-### 7. Go server code
-
-#### 7.1. Go server-side code organization
-
-Our Go server-side code consists of 4 packages located in [src/server](https://github.com/cydriclopez/pgsql-query-json/tree/main/src/server) directory. We have mostly inherited from the Go code in the previous tutorial [Parse JSON in PostgreSQL to save records](https://github.com/cydriclopez/pgsql-parse-json). The Go server-side code is simple. Most of our new code is in the [treedata](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/server/treedata/treedata.go) package.
-
-| # | package   | file | purpose |
-| --- | ----------- | --- | ----------- |
-| 1 | main | [src/server/webserv.go](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/server/webserv.go) | main ***webserv*** executable  |
-| 2 | common | [src/server/common/common.go](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/server/common/common.go) | Postgresql connector  |
-| 3 | params | [src/server/params/params.go](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/server/params/params.go) | process the command-line args |
-| 4 | treedata | [src/server/treedata/treedata.go](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/server/treedata/treedata.go) | process the tree JSON data |
-
-
-### 8. PostgreSQL code
-### 9. Running the Go ***webserv*** app
 ### 10. Conclusion
 
----
+This is the end of this JSON processing tutorial series. The key is the proper coordination of various key pieces of code. The key pieces are Postgresql code in ***tree_insert.sql*** and ***tree_json.sql***.
 
-This is under construction but you can peek into the completed [source code folder](https://github.com/cydriclopez/pgsql-query-json/tree/main/src).😊
+Happy coding! 😊
+---

@@ -1,6 +1,6 @@
-# cd ~/Projects
-# docker compose build --no-cache
-# docker compose up --remove-orphans
+# cd ~/Projects/github/pgsql-query-json/src
+# docker compose build
+# docker compose up
 
 services:
   postgres:
@@ -24,16 +24,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      # Alternative in-image compile using 2-stage image build
-      # dockerfile: Dockerfile_golang
       target: webapp-1.0
     ports:
       - "3000:3000"
     network_mode: host
     restart: always
-    volumes:
-      - ./client/dist/primeng-quickstart-cli:/root/static
-      - ./server/bin:/root
     depends_on:
       - postgres
 

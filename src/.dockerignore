@@ -5,5 +5,6 @@ server/bin/.bash_history
 
 # Allow files and folders with a pattern starting with !
 !server/
-!server/bin
+!server/bin/
+!server/bin/static
 !client/dist/primeng-quickstart-cli
