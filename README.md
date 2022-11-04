@@ -137,6 +137,8 @@ $ pwd
 
 I have refreshed this Docker section to use ***docker compose*** to create the necessary docker images.
 
+Update: altered [Dockerfile](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/Dockerfile) to use distroless image as suggested [here](https://github.com/GoogleContainerTools/distroless/blob/main/examples/go/Dockerfile). In this instance the distroless image resulted in about 75% size savings! See ***7.3. List our images*** below.
+
 Our Docker code consists of 5 files located in folder [pgsql-query-json/src](https://github.com/cydriclopez/pgsql-query-json/tree/main/src).
 
 | # | file   | location | purpose |
@@ -212,13 +214,14 @@ $ docker compose build
 # 7.3. List our images
 $ docker images
 
-REPOSITORY   TAG             IMAGE ID       CREATED        SIZE
-webapp       1.0             a820de5e4946   44 hours ago   103MB
-angular      latest          8c737311abb5   2 days ago     171MB
-postgres     14              cecf89e3640c   2 weeks ago    376MB
-golang       bullseye        8827cedaa309   4 weeks ago    992MB
-debian       bullseye-slim   e7bb3280b4c7   4 weeks ago    80.5MB
-node         14.18-alpine    194cd0d85d8a   9 months ago   118MB
+REPOSITORY  TAG            IMAGE ID      CREATED        SIZE
+webapp      1.0            df557ff98893  3 minutes ago  25.1MB <-- distroless!
+webapp      debian-slim    a820de5e4946  3 days ago     103MB  <-- debian-slim
+angular     latest         8c737311abb5  3 days ago     171MB
+postgres    14             cecf89e3640c  2 weeks ago    376MB
+golang      bullseye       8827cedaa309  4 weeks ago    992MB
+debian      bullseye-slim  e7bb3280b4c7  4 weeks ago    80.5MB
+node        14.18-alpine   194cd0d85d8a  9 months ago   118MB
 
 # 7.4. Webapp run
 $ docker compose up
