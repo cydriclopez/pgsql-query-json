@@ -274,7 +274,7 @@ Test our webapp:
 4. Click ***Read*** to read from the database. It should revert to #1.
 5. The JSON data should show in the console where ***docker compose up*** is running.
 
-Press Ctrl-C to exit our of the ***docker compose up*** process.
+Press Ctrl-C to exit out of the ***docker compose up*** process.
 
 ### 10. Conclusion
 
