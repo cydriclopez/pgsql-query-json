@@ -30,7 +30,7 @@ In this tutorial I have tried to simplify the docker code. I have tried to decou
 
 This tutorial simply presents the narrow topic of JSON data passing between the client and the server, specifically the Postgresql database server. There is a dearth of material on this specific topic so I endeavored to write about it. With Angular, JSON is the primary way of talking to a server via APIs. I also try to highlight the Postgresql JSON features.
 
-Here we will not discuss authentication/authorization, logging, deployment, and data replication, caching and backup. We will also not cover unit, integration, and end-to-end testing. So much more is involved in a full-stack web app development. I am trying to fit writing this tutorial into my current obligations. I have to narrow down the scope or else, I will have to make you sign a non-diclosure agreement. Just kidding!😊
+Here we will not discuss authentication/authorization, logging, deployment, and data replication, caching and backup. We will also not cover unit, integration, and end-to-end testing. So much more is involved in a full-stack web app development. I am trying to fit writing this tutorial into my current obligations. I have to narrow down the scope or else, I will have to make you sign a non-disclosure agreement. Just kidding!😊
 
 ### 3. Goal
 
@@ -224,9 +224,11 @@ node         14.18-alpine    194cd0d85d8a   9 months ago   118MB
 $ docker compose up
 ```
 
-At this point everything is ready **except for our database.** In the next section we will prepare our database.
+At this point our ***webapp*** and ***Postgresql*** is up and running. Everything is ready **except for our database.** In the next section we will prepare our database.
 
 ### 8. Postgresql code
+
+While ***docker compose up*** is running, <ins>**open another terminal**</ins> to run the steps below. Step ***8.5.*** creates our Postgresql data structures so we can access it from our ***webapp.***
 
 ```bash
 # 8.1. Make sure we are in the pgsql-query-json/src folder
@@ -264,9 +266,43 @@ Browse the webapp in http://localhost:3000.
 <kbd><img src="images/primeng-tree-demo3.png" width="650"/></kbd>
 <br/>
 
+Test our webapp:
+
+1. Expand or collapse branches of the tree component.
+2. Click ***Save*** to save the state of the tree component.
+3. Expand or collapse branches of the tree component.
+4. Click ***Read*** to read from the database. It should revert to #1.
+5. The JSON data should show in the console where ***docker compose up*** is running.
+
+Press Ctrl-C to exit our of the ***docker compose up*** process.
+
 ### 10. Conclusion
 
-This is the end of this JSON processing tutorial series. The key is the proper coordination of various key pieces of code. The key pieces are Postgresql code in [tree_insert.sql](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/pgsql/tree_insert.sql) and [tree_json.sql](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/pgsql/tree_json.sql).
+This is the end of this JSON processing tutorial series. The key is the proper coordination of various key pieces of code.
+
+#### 10.1. Client code
+
+| # | file   | purpose |
+| --- | ----------- | ----------- |
+| 1 | [treedemo.component.html](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/client/src/app/treedemo/treedemo.component.html) | HTML template for tree webapp |
+| 2 | [treedemo.component.ts](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/client/src/app/treedemo/treedemo.component.ts) | Tree webapp TypeScript code |
+| 3 | [nodeservice.ts](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/client/src/app/services/nodeservice.ts) | Tree webapp service |
+
+#### 10.2. Server code
+
+| # | file   | purpose |
+| --- | ----------- | ----------- |
+| 1 | [common.go](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/server/common/common.go) | Postgresql connector |
+| 2 | [treedata.go](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/server/treedata/treedata.go) | Process the tree JSON data |
+
+#### 10.3. Postgresql code
+
+| # | file   | purpose |
+| --- | ----------- | ----------- |
+| 1 | [tree_insert.sql](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/pgsql/tree_insert.sql) | Create function tree_insert() |
+| 2 | [tree_json.sql](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/pgsql/tree_json.sql) | Create function tree_json() |
+
+I hope this is helpful.
 
 Happy coding! 😊
 ---
