@@ -137,7 +137,7 @@ $ pwd
 
 I have refreshed this Docker section to use ***docker compose*** to create the necessary docker images.
 
-Update: altered [Dockerfile](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/Dockerfile) to use distroless image as suggested [here](https://github.com/GoogleContainerTools/distroless/blob/main/examples/go/Dockerfile). In this instance the distroless image resulted in about 75% size savings! See ***7.3. List our images*** below.
+Update: altered [Dockerfile](https://github.com/cydriclopez/pgsql-query-json/blob/main/src/Dockerfile) to use distroless image as suggested [here](https://github.com/GoogleContainerTools/distroless). In this instance the distroless image resulted in about 75% size savings! See [7.3. List our images](https://github.com/cydriclopez/pgsql-query-json#7-server-code) below.
 
 Our Docker code consists of 5 files located in folder [pgsql-query-json/src](https://github.com/cydriclopez/pgsql-query-json/tree/main/src).
 
